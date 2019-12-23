@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require "bundler"
+Bundler.setup(:default, :development)
+require "rake/toolkit_program"
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+# Pry (if it's in the Gemfile)
+begin
+  require "pry"
+rescue LoadError
+  require "irb"
+  IRB.start
+else
+  Pry.start
+end
