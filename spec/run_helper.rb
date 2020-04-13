@@ -22,6 +22,16 @@ def run_tool(*args, expect_exit_code: 0, expect_error: nil, &blk)
     rescue StandardError => e
       if expect_error === e
         expect_error = nil
+        # Test that the error message can be printed
+        old_stderr, $stderr = $stderr, StringIO.new
+        begin
+          e.print_error_message
+        rescue StandardError
+          child_exit_code = 1
+          raise
+        ensure
+          $stderr = old_stderr
+        end
       else
         if e.respond_to?(:exit_code)
           child_exit_code = e.exit_code

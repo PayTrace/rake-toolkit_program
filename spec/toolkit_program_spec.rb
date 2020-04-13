@@ -436,6 +436,17 @@ describe Rake::ToolkitProgram do
       }
       expect(described_class::WrongArgumentCount).to be < described_class::InvalidCommandLine
     end
+    
+    it "`on_error: :exit_program!` produces valid error message when no command is given" do
+      run_tool(expect_error: Rake::ToolkitProgram::NoCommand) {|options|
+        described_class.command_tasks do
+          desc "Say hello, Ork style!"
+          task nanu_nanu do
+            puts "Nanu, nanu"
+          end.prohibit_args
+        end
+      }
+    end
   end
   
   context "flag completion" do

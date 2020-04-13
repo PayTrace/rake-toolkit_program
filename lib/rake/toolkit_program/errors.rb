@@ -43,7 +43,7 @@ module Rake
       
       def print_error_message
         s = ToolkitProgram.help_styling
-        $stderr.puts "#{s.error_marker '[ERROR]'} #{s.code name} A command is required."
+        $stderr.puts "#{s.error_marker '[ERROR]'} A command is required."
         $stderr.puts "Use #{s.code "#{ToolkitProgram.script_name} help"} for a list of available commands."
       end
     end
